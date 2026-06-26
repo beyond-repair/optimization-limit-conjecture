@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\begin{theorem}[Existence of Unique Global Optimizer]
+For a depth-$D$ $k$-ary tree $\mathcal{G}_D$, the total cost $\Phi_D(x)$ is given by the sum of squares:
+\[ \Phi_D(x_0) = \sum_{d=0}^D k^d (a^d x_0 - \bar{x})^2 \]
+The unique global minimizer $x_0^*$ is:
+\[ x_0^* = \bar{x} \frac{\sum_{d=0}^D (ka)^d}{\sum_{d=0}^D (ka^2)^d} \]
+\end{theorem}
+
+\begin{proof}
+Taking the partial derivative with respect to $x_0$:
+\[ \frac{\partial \Phi_D}{\partial x_0} = 2 \sum_{d=0}^D k^d (a^d x_0 - \bar{x}) a^d = 2 \sum_{d=0}^D (k^d a^{2d} x_0 - k^d a^d \bar{x}) \]
+Setting $\frac{\partial \Phi_D}{\partial x_0} = 0$:
+\[ x_0 \sum_{d=0}^D (k a^2)^d = \bar{x} \sum_{d=0}^D (k a)^d \implies x_0^* = \bar{x} \frac{\sum_{d=0}^D (k a)^d}{\sum_{d=0}^D (k a^2)^d} \]
+The second derivative $\frac{\partial^2 \Phi_D}{\partial x_0^2} = 2 \sum_{d=0}^D (k a^2)^d > 0$ for $a \in (0,1)$, ensuring the solution is a global minimum. As $D \to \infty$ and $|ka| < 1$, the sums converge to the geometric series $1/(1-r)$, yielding $x_0^\infty = \bar{x} \frac{1-ka}{1-ka^2}$.
+\end{proof}
+
+\end{document}
