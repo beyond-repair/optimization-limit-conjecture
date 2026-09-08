@@ -1,31 +1,28 @@
 # optimization-limit-conjecture
-A formal research framework for the derivation of structural obstruction floors in recursively constrained graph families (the Optimization-Limit Conjecture)
 
-# Optimization-Limit Conjecture (𝒲)
+A formal **research** framework for investigating whether an asymptotic obstruction floor exists in recursively constrained graph families (the Optimization-Limit Conjecture).
+
+**Classification:** RESEARCH (ADL-Governance Sweep-120)  
+**Claim cap:** computational residual on finite k-ary trees. Not a proof. Not a physical constant.
 
 ## Abstract
-This repository presents the **Optimization-Limit Conjecture**, a mathematical research program investigating whether certain empirical invariants, including the empirical value ($W^* \approx 0.08$), may arise as asymptotic obstruction limits in recursively constrained optimization problems.
+This repository presents the **Optimization-Limit Conjecture**, a mathematical research program investigating whether certain empirical invariants, including the empirical motivator (W* ≈ 0.08), *may* arise as asymptotic obstruction limits in recursively constrained optimization problems. That matching is an **optimization target**, not a result.
 
-## Motivation
-Empirical observations across multiple domains motivate a mathematical investigation into whether such invariants emerge as irreducible residuals in recursive optimization problems, rather than as fundamental physical parameters. This project defines the mathematical framework to test this hypothesis.
+## Status
+- Current phase: formulation + finite-depth numerics.
+- Tests: `pytest` residual bounds (`tests/test_residual.py`).
+- CI: GitHub Actions `ci.yml`.
+- Theorem drafts live in `Proofs/`; they are **not** established theorems.
 
-## Repository Overview
-- **CONJECTURE.md**: Formal definitions, Problem 0 (Recursive Constraint Optimization), conjecture statement, assumptions, and theorem roadmap.
-- **experiments/**: Numerical experiments, parameter sweeps, and reproducible computational evidence.
-- **proofs/**: Working theorem drafts and mathematical notes.
-- **docs/**: Research roadmap, terminology, and supporting documentation.
+## Usage
 
-## Project Status
-**Current Phase**: Formal mathematical formulation and computational investigation.
+```bash
+pip install -r requirements.txt
+python main.py --mode experiment --depth 10
+pytest -q
+```
 
-**Long-Term Objective**: Establish rigorous existence, characterization, and optimization theorems for the asymptotic obstruction limit before considering physical applications.
+See [CONJECTURE.md](CONJECTURE.md) for the formal statement.
 
----
-
-This repository distinguishes between computational evidence, mathematical conjectures, and proved results. Claims are intended to evolve as formal proofs and additional experiments are completed.
-
-**Initial Public Formulation Date:** 2026-06-26
-
-**License:** MIT
-
-For the full mathematical statement, see [CONJECTURE.md](CONJECTURE.md).
+**License:** MIT  
+**Initial public formulation:** 2026-06-26
