@@ -16,7 +16,7 @@ Taking the partial derivative with respect to $x_0$:
 \[ \frac{\partial \Phi_D}{\partial x_0} = 2 \sum_{d=0}^D k^d (a^d x_0 - \bar{x}) a^d = 2 \sum_{d=0}^D (k^d a^{2d} x_0 - k^d a^d \bar{x}) \]
 Setting $\frac{\partial \Phi_D}{\partial x_0} = 0$:
 \[ x_0 \sum_{d=0}^D (k a^2)^d = \bar{x} \sum_{d=0}^D (k a)^d \implies x_0^* = \bar{x} \frac{\sum_{d=0}^D (k a)^d}{\sum_{d=0}^D (k a^2)^d} \]
-The second derivative $\frac{\partial^2 \Phi_D}{\partial x_0^2} = 2 \sum_{d=0}^D (k a^2)^d > 0$ for $a \in (0,1)$, ensuring the solution is a global minimum. As $D \to \infty$ and $|ka| < 1$, the sums converge to the geometric series $1/(1-r)$, yielding $x_0^\infty = \bar{x} \frac{1-ka}{1-ka^2}$.
+The second derivative $\frac{\partial^2 \Phi_D}{\partial x_0^2} = 2 \sum_{d=0}^D (k a^2)^d > 0$ for $a \in (0,1)$, ensuring the solution is a global minimum. As $D \to \infty$, if $0<a<1$ and $ka<1$, then $0<ka^2<ka<1$ and both sums converge to $1/(1-r)$, yielding $x_0^\infty = \bar{x} \frac{1-ka^2}{1-ka}$. An earlier draft inverted that factor. The default parameters $(k,a)=(3,0.8)$ have $ka=2.4>1$, so the infinite expression does not apply; the finite-$D$ formula is what the code evaluates.
 \end{proof}
 
 \end{document}

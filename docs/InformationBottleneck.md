@@ -1,3 +1,5 @@
+This note is an analogy, not a derived equivalence. The only executable check in this repository is the finite-depth residual.
+
 # Mapping 𝒲 to the Information Bottleneck
 
 ## The Information Bottleneck Principle

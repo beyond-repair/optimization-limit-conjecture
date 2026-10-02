@@ -8,10 +8,10 @@
 
 | Field | Value |
 |-------|--------|
-| Tests | tests/test_residual.py (bounds / numeric hygiene only) |
+| Tests | tests/test_residual.py (finite-D formula, int64 overflow regression, CLI) |
 | CI | .github/workflows/ci.yml |
 | Proofs | Proofs/TheoremA.tex is a draft, not a published proof |
-| Duplicate residual implementations | experiments/core.py, branching_conflict_experiment.py, parameter_sweep.py |
+| Residual implementation | experiments/branching_conflict_experiment.py; core.py refuses the removed infinite shortcut |
 
 ## Forbidden claims
 
@@ -19,4 +19,4 @@
 - Do not claim W* ≈ 0.08 is derived or measured here.
 - Do not promote to ACTIVE without operator review after green CI + SECURITY.md.
 
-Malformed path `(requirements.txt` is historical; `requirements.txt` is the install path.
+`requirements.txt` is the install path. The stray `(requirements.txt` file and the duplicate sweep module were removed so they cannot be installed or imported by mistake.
