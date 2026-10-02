@@ -34,3 +34,9 @@ $$\min_{\Theta} \left| \mathcal{W}(\Theta) - W^* \right|$$
 
 ---
 *Note: This repository distinguishes between computational evidence, mathematical conjectures, and proved results. Claims are intended to evolve as formal proofs and additional experiments are completed.*
+
+## What the program computes
+
+`experiments/branching_conflict_experiment.py` evaluates the finite-depth residual only. It does not evaluate the limit, and it does not minimize distance to 0.08.
+
+With the defaults `(k, a, epsilon, bar_x) = (3, 0.8, 0.05, 1)` at depth 10, the exact residual is 68890/88573 = 0.7777765233197476. The CLI prints `R_D = 0.777777` and `|R_D - 0.08| = 0.697777`. `ka = 2.4 > 1`, so the infinite-depth geometric root is outside the domain stated in `Proofs/TheoremA.tex`.

@@ -4,6 +4,8 @@
 
 The goal of this research program is to derive the asymptotic obstruction limit $\mathcal{W}$ and determine if it characterizes the empirical value $W^* \approx 0.08$.
 
+Levels 2 and 3 are not implemented. The code computes finite-depth residuals only. It does not infer lensing, rotation curves, thrust, or a physical value of $W^*$.
+
 ## The Three-Level Research Program
 
 ### Level 1: Optimization (Foundational)

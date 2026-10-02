@@ -1,58 +1,41 @@
-import matplotlib.pyplot as plt
-import numpy as np
+"""Optional residual-vs-a plot. Requires matplotlib (not part of the core install)."""
+
 import os
 import sys
-import warnings
-warnings.filterwarnings("ignore", category=RuntimeWarning)
 
-# Robust import
-current_dir = os.path.dirname(os.path.abspath(__file__))
-parent_dir = os.path.dirname(current_dir)
-sys.path.insert(0, parent_dir)
-try:
-    from experiments.core import calculate_residual
-except ImportError:
-    sys.path.insert(0, os.getcwd())
-    from experiments.core import calculate_residual
+import numpy as np
 
-def plot_surface():
+_HERE = os.path.dirname(os.path.abspath(__file__))
+if _HERE not in sys.path:
+    sys.path.insert(0, _HERE)
+
+from branching_conflict_experiment import calculate_residual
+
+
+def plot_surface(depth=30, k=3, epsilon=0.05, out_dir=None):
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
     a_vals = np.linspace(0.1, 0.95, 30)
-    res = []
-    for a in a_vals:
-        try:
-            r = calculate_residual(30, k=3, a=a, epsilon=0.05)  # Cap depth to avoid overflow
-            res.append(r)
-        except:
-            res.append(np.nan)
-    
+    res = [calculate_residual(depth, k=k, a=float(a), epsilon=epsilon) for a in a_vals]
+
     plt.figure(figsize=(8, 5))
-    plt.plot(a_vals, res, 'b-', linewidth=2)
-    plt.xlabel('Propagation Parameter a')
-    plt.ylabel('Residual R_D')
-    plt.title('Residual Surface (k=3, ε=0.05)')
+    plt.plot(a_vals, res, "b-", linewidth=2)
+    plt.xlabel("Propagation parameter a")
+    plt.ylabel("Residual R_D")
+    plt.title(f"Residual surface (k={k}, epsilon={epsilon}, depth={depth})")
     plt.grid(True)
-    
-    # Ultimate fallback for data dir
-    possible_dirs = [
-        os.path.join(os.getcwd(), 'data'),
-        os.path.join(parent_dir, 'data'),
-        os.path.join(os.path.expanduser("~"), 'optimization_data')
-    ]
-    data_dir = None
-    for d in possible_dirs:
-        try:
-            os.makedirs(d, exist_ok=True)
-            data_dir = d
-            break
-        except:
-            continue
-    if data_dir:
-        save_path = os.path.join(data_dir, 'residual_surface.png')
-        plt.savefig(save_path)
-        print(f"✅ Plot saved successfully to: {save_path}")
-    else:
-        print("⚠️ Could not create data dir. Plot shown interactively.")
-        plt.show()
+
+    data_dir = out_dir or os.path.join(os.getcwd(), "data")
+    os.makedirs(data_dir, exist_ok=True)
+    save_path = os.path.join(data_dir, "residual_surface.png")
+    plt.savefig(save_path)
+    plt.close()
+    print(f"Plot saved to: {save_path}")
+    return save_path
+
 
 if __name__ == "__main__":
     plot_surface()
